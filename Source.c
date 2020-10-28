@@ -26,6 +26,7 @@ int main()
 		}
 	}
 	printf("Broj redaka je %d.\n", broj);
+	fseek(fp, 0, SEEK_SET);
 	Student = (studenti*)malloc(broj * sizeof(studenti));
 	for (i = 0; i < broj; i++) {
 		fscanf(fp,"%s %s %f", Student[i].ime, Student[i].prezime, &Student[i].bodovi);
