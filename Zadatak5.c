@@ -129,4 +129,3 @@ int stvaranjeUnije(Pozicija s1, Pozicija s2, Pozicija unija) {
 	}
 	return 0;
 }
-//s->next != NULL && s->next->broj < q->broj
