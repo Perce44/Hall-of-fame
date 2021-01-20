@@ -4,8 +4,7 @@
 #include <string.h>
 
 typedef struct stog* Pozicija;
-typedef struct stog
-{
+typedef struct stog{
     float broj;
     Pozicija next;
 } Clan;
@@ -15,8 +14,7 @@ float SkiniSaStoga(Pozicija P);
 int IzracunajPostfix(Pozicija P, char* imeDatoteke);
 int Operacija(Pozicija P, char operator);
 int IspisIzDatoteke(char* datoteka);
-int main()
-{
+int main(){
     char imeDatoteke[256];
     Pozicija Head = (Pozicija)malloc(sizeof(Clan));
 
@@ -38,8 +36,7 @@ int main()
 
     return 0;
 }
-int DodajNaStog(Pozicija P, float broj)
-{
+int DodajNaStog(Pozicija P, float broj){
     Pozicija novi = (Pozicija)malloc(sizeof(Clan));
 
     if (novi == NULL) {
@@ -52,8 +49,7 @@ int DodajNaStog(Pozicija P, float broj)
 
     return 0;
 }
-float SkiniSaStoga(Pozicija P)
-{
+float SkiniSaStoga(Pozicija P){
     Pozicija temp;
     float broj;
     broj = P->next->broj;
@@ -63,8 +59,7 @@ float SkiniSaStoga(Pozicija P)
     free(temp);
     return broj;
 }
-int IzracunajPostfix(Pozicija P, char* ime)
-{
+int IzracunajPostfix(Pozicija P, char* ime){
     FILE* fp;
     char buffer[256];
     char* pBuffer = buffer;
@@ -80,18 +75,15 @@ int IzracunajPostfix(Pozicija P, char* ime)
 
     fclose(fp);
 
-    while (strlen(pBuffer) > 0)
-    {
+    while (strlen(pBuffer) > 0){
         char operator= 0;
         int k = 0;
         float broj = 0;
-        if (sscanf(pBuffer, " %f%n", &broj, &k) == 1)
-        {
+        if (sscanf(pBuffer, " %f%n", &broj, &k) == 1){
             DodajNaStog(P, broj);
             pBuffer += k;
         }
-        else
-        {
+        else{
             sscanf(pBuffer, " %c%n", &operator, &k);
             Operacija(P, operator);
             pBuffer += k;
@@ -100,13 +92,11 @@ int IzracunajPostfix(Pozicija P, char* ime)
 
     return 0;
 }
-int Operacija(Pozicija P, char operator)
-{
+int Operacija(Pozicija P, char operator){
     float operand1 = 0;
     float operand2 = 0;
 
-    switch (operator)
-    {
+    switch (operator){
     case ('*'):
         operand2 = SkiniSaStoga(P);
         operand1 = SkiniSaStoga(P);
